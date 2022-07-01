@@ -474,6 +474,7 @@ dependencies = [
 [[package]]
 name = "d20"
 version = "0.2.0"
+source = "git+https://github.com/brooksmtownsend/d20?branch=wasm32-support#70686c7360101e47932c235f0da1c821bdef96fd"
 dependencies = [
  "rand 0.3.23",
  "regex 0.2.11",
