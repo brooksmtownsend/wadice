@@ -1,6 +1,6 @@
 [package]
 name = "wadice"
-version = "0.1.0"
+version = "0.1.1"
 authors = [ "" ]
 edition = "2021"
 
@@ -15,6 +15,7 @@ wasmbus-rpc = "0.8.2"
 wasmcloud-interface-httpserver = "0.5"
 wasmcloud-interface-numbergen = "0.5"
 d20 = { version = "0.2.0", git = "https://github.com/brooksmtownsend/d20", branch = "wasm32-support" }
+rust-embed = "6.4.0"
 
 [profile.release]
 # Optimize for small code size

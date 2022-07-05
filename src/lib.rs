@@ -1,7 +1,12 @@
 use d20::DieRollTerm;
+use rust_embed::RustEmbed;
 use wasmbus_rpc::actor::prelude::*;
 use wasmcloud_interface_httpserver::{HttpRequest, HttpResponse, HttpServer, HttpServerReceiver};
 use wasmcloud_interface_numbergen::random_in_range;
+
+#[derive(RustEmbed)]
+#[folder = "static/"]
+struct Asset;
 
 #[derive(Debug, Default, Actor, HealthResponder)]
 #[services(Actor, HttpServer)]
@@ -18,6 +23,14 @@ impl HttpServer for WadiceActor {
         _ctx: &Context,
         req: &HttpRequest,
     ) -> std::result::Result<HttpResponse, RpcError> {
+        if req.path.contains("favicon.ico") {
+            if let Some(favicon) = Asset::get("favicon.ico") {
+                return Ok(HttpResponse {
+                    body: favicon.data.to_vec(),
+                    ..Default::default()
+                });
+            }
+        }
         let roll = form_urlencoded::parse(req.query_string.as_bytes())
             .find(|(n, _)| n == "roll")
             .map(|(_, v)| v.to_string())
