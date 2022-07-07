@@ -50,8 +50,22 @@ impl HttpServer for WadiceActor {
                 }
         }
 
+        let resp_body = format!(
+            r#"<!DOCTYPE html>
+        <html>
+        <head>
+            <title>Roll: {}</title>
+        </head>
+        <body>
+            <h1>You rolled a {}</h1>
+        </body>
+        </html>
+        "#,
+            total, total
+        );
+
         Ok(HttpResponse {
-            body: format!("Your die roll is: {}", total).as_bytes().to_vec(),
+            body: resp_body.into_bytes(),
             ..Default::default()
         })
     }

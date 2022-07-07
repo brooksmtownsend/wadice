@@ -1,7 +1,7 @@
 [package]
 name = "wadice"
-version = "0.1.1"
-authors = [ "" ]
+version = "0.1.2"
+authors = [ "Brooks Townsend" ]
 edition = "2021"
 
 [lib]
@@ -11,9 +11,9 @@ name = "wadice"
 [dependencies]
 futures = "0.3"
 form_urlencoded = "1.0"
-wasmbus-rpc = "0.8.2"
-wasmcloud-interface-httpserver = "0.5"
-wasmcloud-interface-numbergen = "0.5"
+wasmbus-rpc = "0.9"
+wasmcloud-interface-httpserver = "0.6"
+wasmcloud-interface-numbergen = "0.6"
 d20 = { version = "0.2.0", git = "https://github.com/brooksmtownsend/d20", branch = "wasm32-support" }
 rust-embed = "6.4.0"
 
