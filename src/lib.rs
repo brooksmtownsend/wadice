@@ -64,6 +64,8 @@ impl HttpServer for WadiceActor {
             total, total
         );
 
+        wasmcloud_interface_logging::info!("A user rolled a {}!", total);
+
         Ok(HttpResponse {
             body: resp_body.into_bytes(),
             ..Default::default()

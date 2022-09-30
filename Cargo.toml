@@ -11,9 +11,10 @@ name = "wadice"
 [dependencies]
 futures = "0.3"
 form_urlencoded = "1.0"
-wasmbus-rpc = "0.9"
-wasmcloud-interface-httpserver = "0.6"
-wasmcloud-interface-numbergen = "0.6"
+wasmbus-rpc = "0.10"
+wasmcloud-interface-httpserver = "0.7"
+wasmcloud-interface-numbergen = "0.7"
+wasmcloud-interface-logging = "0.7"
 d20 = { version = "0.2.0", git = "https://github.com/brooksmtownsend/d20", branch = "wasm32-support" }
 rust-embed = "6.4.0"
 
