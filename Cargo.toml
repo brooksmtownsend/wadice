@@ -1,6 +1,6 @@
 [package]
 name = "wadice"
-version = "0.1.3"
+version = "0.2.0"
 authors = [ "Brooks Townsend" ]
 edition = "2021"
 
@@ -10,7 +10,6 @@ name = "wadice"
 
 [dependencies]
 futures = "0.3"
-form_urlencoded = "1.0"
 wasmbus-rpc = "0.10"
 wasmcloud-interface-httpserver = "0.7"
 wasmcloud-interface-numbergen = "0.7"

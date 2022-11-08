@@ -1,0 +1,7 @@
+name = "wadice"
+language = "rust"
+type = "actor"
+version = "0.2.0"
+
+[actor]
+claims = ["wasmcloud:httpserver", "wasmcloud:builtin:numbergen", "wasmcloud:builtin:logging"]
