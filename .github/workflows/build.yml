@@ -21,8 +21,8 @@ jobs:
       - name: modsurfer validate
         uses: dylibso/modsurfer-validate-action@main
         with:
-            path: ./target/wasm32-unknown-unknown/debug/wadice.wasm
-            check: ./mod.yaml
+            path: target/wasm32-unknown-unknown/debug/wadice.wasm
+            check: mod.yaml
       - name: Check lints with clippy
         run: |
           rustup component add clippy

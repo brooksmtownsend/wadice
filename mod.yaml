@@ -1,0 +1,17 @@
+validate:
+  allow_wasi: false
+
+  imports: 
+    include:
+    - __guest_request
+    - __guest_response
+    - __guest_error
+    namespace:
+      include:
+      - wasmbus
+
+
+  exports: 
+    include:
+    - __wasmbus_rpc_version
+    - __guest_call   
