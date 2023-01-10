@@ -9,14 +9,20 @@ jobs:
   build_and_test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Add wasm32-unknown-unknown
         run: rustup target add wasm32-unknown-unknown
+
       - name: Check formatting
         run: cargo fmt -- --check
         shell: bash
       - name: Build actor
         run: cargo build
+      - name: modsurfer validate
+        uses: dylibso/modsurfer-validate-action@main
+        with:
+            path: ./target/wasm32-unknown-unknown/debug/wadice.wasm
+            check: ./mod.yaml
       - name: Check lints with clippy
         run: |
           rustup component add clippy
