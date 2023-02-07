@@ -90,7 +90,7 @@ jobs:
           echo "actor-version=latest" >> $GITHUB_ENV
       - name: Push actor to GHCR
         env:
-          WASH_REG_USER: ${{ github.repository_owner }}
+          WASH_REG_USER: ${{ github.actor }}
           WASH_REG_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
           wash reg push ghcr.io/${{ github.REPOSITORY }}:${{ env.actor-version }} build/${{ env.actor-name }}_s.wasm -a org.opencontainers.image.source=https://github.com/${{ github.REPOSITORY }} --allow-latest
