@@ -13,7 +13,6 @@ env:
   # For the release action, you'll have to set the following variables
   WASH_ISSUER_KEY: ${{ secrets.WASH_ISSUER_KEY }}
   WASH_SUBJECT_KEY: ${{ secrets.WASH_SUBJECT_KEY }}
-  WASMCLOUD_PAT: ${{ secrets.WASMCLOUD_PAT }}
 jobs:
   build_signed_actor:
     runs-on: ubuntu-latest
@@ -62,7 +61,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: build/*.wasm
-          token: ${{ env.WASMCLOUD_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           body_path: release.txt
           prerelease: true
           draft: false
@@ -92,6 +91,6 @@ jobs:
       - name: Push actor to GHCR
         env:
           WASH_REG_USER: ${{ github.repository_owner }}
-          WASH_REG_PASSWORD: ${{ secrets.WASMCLOUD_PAT }}
+          WASH_REG_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
           wash reg push ghcr.io/${{ github.REPOSITORY }}:${{ env.actor-version }} build/${{ env.actor-name }}_s.wasm -a org.opencontainers.image.source=https://github.com/${{ github.REPOSITORY }} --allow-latest

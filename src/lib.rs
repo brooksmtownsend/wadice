@@ -26,7 +26,7 @@ impl HttpServer for WadiceActor {
         }
 
         let path = req.path.trim_matches('/');
-        let roll = if path.len() <= 0 {
+        let roll = if path.is_empty() {
             "1d20".to_string()
         } else {
             path.to_string()
@@ -36,14 +36,13 @@ impl HttpServer for WadiceActor {
 
         let mut total = 0;
         for roll in die_rolls {
-            total = total
-                + match roll {
-                    d20::DieRollTerm::Modifier(n) => n,
-                    d20::DieRollTerm::DieRoll {
-                        multiplier: m,
-                        sides: s,
-                    } => random_in_range(1, s as u32).await? as i8 * m,
-                }
+            total += match roll {
+                d20::DieRollTerm::Modifier(n) => n,
+                d20::DieRollTerm::DieRoll {
+                    multiplier: m,
+                    sides: s,
+                } => random_in_range(1, s as u32).await? as i8 * m,
+            }
         }
 
         let resp_body = format!(
