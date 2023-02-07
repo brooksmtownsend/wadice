@@ -1,0 +1,33 @@
+# `wash app put wadm.yaml`
+# `wash app deploy wadice 0.0.1`
+
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: wadice
+  annotations:
+    version: v0.0.1
+    description: "wadice app"
+spec:
+  components:
+    - name: wadice
+      type: actor
+      properties:
+        image: ghcr.io/brooksmtownsend/wadice:0.2.0
+      traits:
+        - type: linkdef
+          properties:
+            target: httpserver
+        - type: spreadscaler
+          properties:
+            replicas: 10
+
+    - name: httpserver
+      type: capability
+      properties:
+        image: cosmonic.azurecr.io/httpserver_wormhole:0.5.0
+        contract: wasmcloud:httpserver
+      traits:
+        - type: spreadscaler
+          properties:
+            replicas: 1
